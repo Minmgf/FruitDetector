@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center {
+    position: absolute;
+    left: 33%;
+    top: 45%;
+    transform: translate(50%, 50%) scale(2);
+}

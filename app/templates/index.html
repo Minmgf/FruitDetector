@@ -1,0 +1,63 @@
+<!-- INDEX HTML -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Upload Image{% endblock %}</title>
+    {% block style %}
+        <!-- Additional styles go here if needed -->
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <h1 class="title has-text-centered">Image Upload</h1>
+                    {% if message %}
+                        <div class="notification is-info has-text-centered">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    {% if image_url %}
+                        <div class="has-text-centered">
+                            <img src="{{ image_url }}" alt="Uploaded Image" class="uploaded-image">
+                        </div>
+                    {% endif %}
+                    <div class="content">
+                        <!-- Contenido existente -->
+                        {% if existing_content %}
+                            <p>{{ existing_content }}</p>
+                        {% endif %}
+
+                        <!-- Mostrar la predicción -->
+                        {% if predictions is defined %}
+                            <h3 class="subtitle has-text-centered">Predicted Image: {{ predictions }}</h3>
+                        {% endif %}
+                    </div>
+                    <form action="/create" method="POST" enctype="multipart/form-data">
+                        <div class="field">
+                            <label class="label">Choose an image</label>
+                            <div class="control">
+                                <input class="input" type="file" name="file" />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary" type="submit">Upload Image</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
